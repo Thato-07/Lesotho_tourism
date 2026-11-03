@@ -1,0 +1,98 @@
+/ Discover Lesotho - custom styles layered on Bootstrap 5 /
+:root {
+  --green: #315b43;
+  --green-dark: #22402f;
+  --lime: #dce9c9;
+  --cream: #f7f6f0;
+  --ink: #17251d;
+  --muted: #5d685f;
+  --bs-body-font-family: 'DM Sans', Arial, sans-serif;
+}
+
+body { background: var(--cream); color: var(--ink); line-height: 1.7; }
+h1, h2, h3, h4, h5, .brand-name { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; line-height: 1.15; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); letter-spacing: -1px; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+.eyebrow { font-size: .8rem; letter-spacing: .18em; font-weight: 700; text-transform: uppercase; color: var(--green); }
+.text-muted-custom { color: var(--muted); }
+:focus-visible { outline: 3px solid #8fb36b; outline-offset: 2px; }
+.skip-link { position: absolute; left: -999px; background: var(--green); color: #fff; padding: .6rem 1rem; z-index: 2000; }
+.skip-link:focus { left: 0; top: 0; color: #fff; }
+
+/* Navbar */
+.navbar { background: var(--cream); border-bottom: 1px solid #dfe3da; }
+.brand-mark { width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: #fff; display: inline-grid; place-items: center; font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+.navbar-brand { display: flex; align-items: center; gap: .7rem; font-size: .9rem; letter-spacing: .1em; line-height: 1.2; }
+.navbar-brand small { display: block; letter-spacing: .02em; color: var(--muted); font-size: .75rem; }
+.navbar .nav-link { font-weight: 600; color: var(--ink); transition: color .2s; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: #66814c; }
+.dropdown-menu { border-radius: 0; border: 1px solid #dfe3da; }
+.dropdown-item { transition: background .2s, padding-left .2s; }
+.dropdown-item:hover, .dropdown-item.active { background: var(--lime); color: var(--ink); padding-left: 1.5rem; }
+.btn-lesotho { background: var(--green); color: #fff; border: 0; border-radius: 0; padding: .8rem 1.4rem; font-weight: 700; transition: background .25s, transform .25s; }
+.btn-lesotho:hover, .btn-lesotho:focus { background: var(--green-dark); color: #fff; transform: translateY(-2px); }
+.btn-outline-lesotho { border: 2px solid var(--green); color: var(--green); border-radius: 0; font-weight: 700; padding: .7rem 1.3rem; transition: all .25s; }
+.btn-outline-lesotho:hover { background: var(--green); color: #fff; }
+.carousel-item img { height: min(680px, 80vh); min-height: 460px; object-fit: cover; }
+.carousel-item::after, .page-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,24,17,.75), rgba(9,24,17,.15)); }
+.carousel-caption { z-index: 2; text-align: left; left: 8%; right: 8%; bottom: 20%; max-width: 640px; }
+.carousel-caption .eyebrow, .page-banner .eyebrow { color: #d9e8bf; }
+.carousel-caption em, .page-banner em { color: #d7e6bd; }
+.page-banner { position: relative; height: 360px; overflow: hidden; color: #fff; }
+.page-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.page-banner .container { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.page-banner::after { z-index: 1; }
+.card { border: 0; border-radius: 0; background: #fff; transition: transform .3s, box-shadow .3s; height: 100%; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 35px rgba(24,40,27,.14); }
+.card-img-top { height: 220px; object-fit: cover; border-radius: 0; }
+.card-title { font-size: 1.5rem; }
+.badge-lesotho { background: var(--lime); color: var(--green-dark); font-weight: 700; border-radius: 0; letter-spacing: .06em; }
+.tip { border-left: 3px solid var(--green); padding-left: .8rem; font-size: .95rem; color: var(--muted); }
+
+/* Sections */
+.section { padding: 5rem 0; }
+.band { background: #e9eddf; }
+.facts li { padding: .5rem 0; border-bottom: 1px solid #dfe3da; }
+.facts li::marker { color: var(--green); }
+.table thead { background: var(--green); color: #fff; }
+.table > :not(caption) > * > * { padding: .9rem; }
+.table-hover tbody tr { transition: background .2s; }
+
+/* Accordion */
+.accordion-item { border-radius: 0 !important; border-color: #dfe3da; }
+.accordion-button { font-family: 'Playfair Display', serif; font-size: 1.25rem; background: #fff; }
+.accordion-button:not(.collapsed) { background: var(--lime); color: var(--ink); box-shadow: none; }
+
+/* Gallery */
+.gallery-btn { display: block; width: 100%; padding: 0; border: 0; background: none; position: relative; overflow: hidden; }
+.gallery-btn img { width: 100%; height: 260px; object-fit: cover; transition: transform .4s; }
+.gallery-btn:hover img { transform: scale(1.06); }
+.gallery-btn span { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem 1rem .8rem; color: #fff; text-align: left; font-family: 'Playfair Display', serif; font-size: 1.15rem; background: linear-gradient(transparent, rgba(7,20,12,.8)); }
+#gImg { max-height: 65vh; object-fit: contain; width: 100%; background: #000; }
+.thumb { width: 70px; height: 50px; object-fit: cover; opacity: .55; cursor: pointer; border: 2px solid transparent; transition: opacity .2s; }
+.thumb:hover, .thumb.on { opacity: 1; border-color: var(--lime); }
+
+/* Forms */
+.form-card { background: #fff; padding: 2rem; box-shadow: 0 12px 35px rgba(24,40,27,.07); }
+.form-label { font-weight: 700; font-size: .9rem; }
+.form-control, .form-select { border-radius: 0; padding: .7rem .8rem; }
+.form-control:focus, .form-select:focus { border-color: var(--green); box-shadow: 0 0 0 .2rem rgba(49,91,67,.2); }
+
+/* Footer */
+.footer { background: var(--ink); color: #cfd8cb; padding: 3rem 0 1.5rem; }
+.footer a { color: #cfd8cb; transition: color .2s; }
+.footer a:hover { color: var(--lime); }
+.quote { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); }
+
+@media (max-width: 575.98px) { .section { padding: 3.5rem 0; } .carousel-caption { bottom: 12%; } .page-banner { height: 300px; } }
+
+
+/* Refinements added for the revised submission */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+img { max-width: 100%; }
+.navbar { position: sticky; top: 0; z-index: 1030; }
+.card:focus-within, .gallery-btn:focus-visible { outline: 3px solid #8fb36b; outline-offset: 3px; }
+.form-card { border-top: 4px solid var(--green); }
+.invalid-feedback { font-size: .82rem; }
+.gallery-btn:focus-visible { z-index: 2; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
