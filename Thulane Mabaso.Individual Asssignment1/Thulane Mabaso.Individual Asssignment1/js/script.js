@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initRegistrationForm();
   initGallery();
+  initBackToTop();
 });
 
 /* ---------- Feature 1: registration form validation ---------- */
@@ -57,23 +58,39 @@ function initRegistrationForm() {
     if (form.elements.confirm.value) show(form.elements.confirm, rules.confirm(form.elements.confirm.value));
   });
 
+
+  form.querySelectorAll('input[name="gender"]').forEach(r =>
+    r.addEventListener('change', () => { document.getElementById('genderError').textContent = ''; }));
+
+  form.addEventListener('reset', () => {
+    form.querySelectorAll('.is-valid, .is-invalid').forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+    form.querySelectorAll('.invalid-feedback, #genderError').forEach(el => { el.textContent = ''; });
+    const box = document.getElementById('formAlert');
+    box.className = '';
+    box.textContent = '';
+  });
+
+  // "Plan this trip" buttons link here as contact.html?destination=Katse%20Dam
+  const wanted = new URLSearchParams(window.location.search).get('destination');
+  if (wanted && form.elements.destination) {
+    const match = [...form.elements.destination.options].find(o => o.value === wanted || o.text === wanted);
+    if (match) form.elements.destination.value = match.value || match.text;
+  }
+
   form.addEventListener('submit', e => {
     e.preventDefault();
     let valid = checkGender();
-    const dateField = form.elements.travelDate;
-  if (dateField) dateField.min = localDateString();
-
-  Object.keys(rules).forEach(name => {
+    Object.keys(rules).forEach(name => {
       const f = form.elements[name];
       if (!show(f, rules[name](f.type === 'checkbox' ? '' : f.value))) valid = false;
     });
     const alertBox = document.getElementById('formAlert');
     if (valid) {
       const first = form.fullname.value.trim().split(' ')[0];
-      alertBox.className = 'alert alert-success mt-3';
-      alertBox.textContent = `Thank you, ${first}! Your registration for ${form.destination.value} is received. (Demo only: no data is sent or stored.)`;
-      form.reset();
-      form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+      const destination = form.destination.value;
+      form.reset(); // clears the fields (and the old messages) first...
+      alertBox.className = 'alert alert-success mt-3'; // ...then show the confirmation
+      alertBox.textContent = `Thank you, ${first}! Your registration for ${destination} is received. (Demo only: no data is sent or stored.)`;
     } else {
       alertBox.className = 'alert alert-danger mt-3';
       alertBox.textContent = 'Please fix the highlighted fields and try again.';
@@ -118,4 +135,18 @@ function initGallery() {
     if (e.key === 'ArrowRight') show(current + 1);
     if (e.key === 'ArrowLeft') show(current - 1);
   });
+}
+
+/* ---------- Feature 3: back-to-top button ---------- */
+function initBackToTop() {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<span aria-hidden="true">&uarr;</span>';
+  document.body.appendChild(btn);
+  const toggle = () => btn.classList.toggle('show', window.scrollY > 400);
+  window.addEventListener('scroll', toggle, { passive: true });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  toggle();
 }
